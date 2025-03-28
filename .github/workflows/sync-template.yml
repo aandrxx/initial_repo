@@ -24,6 +24,11 @@ jobs:
           echo "Using template repository: $TEMPLATE_REPO"
           echo "TEMPLATE_REPO=$TEMPLATE_REPO" >> $GITHUB_ENV
 
+      - name: Set up Git user
+        run: |
+          git config --local user.name "GitHub Actions"
+          git config --local user.email "actions@github.com"
+
       - name: Checkout target repository
         uses: actions/checkout@v4
         with:
