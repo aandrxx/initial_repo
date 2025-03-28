@@ -1,8 +1,6 @@
 name: Update Forks with PRs
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch: 
 
 jobs:
   update-forks:
