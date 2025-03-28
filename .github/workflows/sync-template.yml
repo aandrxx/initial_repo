@@ -53,5 +53,5 @@ jobs:
         if: env.needs_update == 'true'
         run: |
           git checkout main
-          git merge --ff-only template/main
+          git merge --allow-unrelated-histories -X theirs template/main
           git push origin main
