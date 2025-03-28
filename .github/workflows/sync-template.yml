@@ -24,16 +24,11 @@ jobs:
           echo "Using template repository: $TEMPLATE_REPO"
           echo "TEMPLATE_REPO=$TEMPLATE_REPO" >> $GITHUB_ENV
 
-      - name: Set up Git user
-        run: |
-          git config --local user.name "GitHub Actions"
-          git config --local user.email "actions@github.com"
-
       - name: Checkout target repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GH_TOKEN }}
 
       - name: Add template repository as remote
         run: |
@@ -53,6 +48,11 @@ jobs:
             echo "No updates found."
             echo "needs_update=false" >> $GITHUB_ENV
           fi
+
+      - name: Set up Git user
+        run: |
+          git config --local user.name "GitHub Actions"
+          git config --local user.email "actions@github.com"
 
       - name: Merge changes if updates exist
         if: env.needs_update == 'true'
